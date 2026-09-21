@@ -17,5 +17,6 @@ ser.write(message_bytes)
 response_bytes = ser.readline()
 print(response_bytes)
 response = response_bytes.decode().strip()
+print(response)
 
 ser.close()
