@@ -1,12 +1,21 @@
 import serial
+import time
 
 print("Learning Pyserial")
 
 ser = serial.Serial("/dev/ttyACM0", 19200, timeout=10)
 
-while not ser.is_open:
-    print("Opening...")
+time.sleep(2.0)
 
-# TODO: Use the serial object
+ser.reset_input_buffer()
+message = "RESET"
+print(message)
+message_bytes = (message + "\n").encode()
+print(message_bytes)
+
+ser.write(message_bytes)
+response_bytes = ser.readline()
+print(response_bytes)
+response = response_bytes.decode().strip()
 
 ser.close()
