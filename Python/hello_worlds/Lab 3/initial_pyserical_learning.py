@@ -4,8 +4,8 @@ import time
 print("Learning Pyserial")
 
 ser = serial.Serial("/dev/ttyACM0", 19200, timeout=10)
-
-time.sleep(2.0)
+# time.sleep(2.0)
+time.sleep(1)
 
 ser.reset_input_buffer()
 message = "RESET"
