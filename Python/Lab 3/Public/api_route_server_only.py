@@ -2,6 +2,10 @@ import flask
 
 app = flask.Flask(__name__)
 
+@app.get("/")
+def handle_naked_domain():
+    return "Do you think about me now and then?"
+
 @app.get("/api/hello/<name>")
 def hello_name(name):
     return f"Hello, {name}!"
