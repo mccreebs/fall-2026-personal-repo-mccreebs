@@ -5,7 +5,7 @@ import threading
 app = flask.Flask(__name__, static_url_path="", static_folder="Public")
 
 serial_lock = threading.Lock()
-loader = plateloader.PlateLoader() # TODO: set port if needed
+loader = plateloader.PlateLoader("/dev/ttyACM1") # TODO: set port if needed
 
 @app.get("/")
 def handle_naked_domain():
