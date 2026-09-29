@@ -49,6 +49,15 @@ function main() {
     document.querySelector("#gripperClose").onclick = () => {
         sendCommand("GRIPPER CLOSE");
     };
+
+// Move
+
+    document.querySelector("#move").onclick = () => {
+        let startPos = document.querySelector("#moveFrom");
+        let endPos = document.querySelector("#moveTo");
+        sendCommand(`MOVE ${startPos} ${endPos}`);
+    };    
+
 }
 
 
