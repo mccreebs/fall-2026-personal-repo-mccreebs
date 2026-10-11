@@ -18,9 +18,21 @@ class Arduino:
         if self.ser and self.ser.is_open:
             self.ser.close()
 
-    def send_command(self, command):
+    def send_LED_command(self, command):
         self.ser.reset_input_buffer()
-        message_bytes = (command + "\n").encode()
+        message_bytes = ("LED " + command.upper() + "\n").encode()
+        print(message_bytes)
+
+        self.ser.write(message_bytes)
+
+        response_bytes = self.ser.readline()
+        print(response_bytes)
+        response = response_bytes.decode().strip()
+        return response
+
+    def send_FLASH_command(self, number, delay):
+        self.ser.reset_input_buffer()
+        message_bytes = ("FLASH " + number + " " + delay + "\n").encode()
         print(message_bytes)
 
         self.ser.write(message_bytes)
@@ -32,9 +44,9 @@ class Arduino:
 
 
 if __name__ == "__main__":
-    print("Quick PlateLoader testing")
-    loader = PlateLoader()
-    loader.connect()
-    response = loader.send_command("RESET")
+    print("Quick Arduino testing")
+    arduino = Arduino()
+    arduino.connect()
+    response = arduino.send_LED_command("on")
     print("Response: ", response)
-    loader.disconnect()
+    arduino.disconnect()

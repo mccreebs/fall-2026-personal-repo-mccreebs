@@ -11,10 +11,16 @@ arduino = arduino.Arduino("/dev/ttyACM0") # TODO: set port if needed
 def handle_naked_domain():
     return flask.redirect("/index.html")
 
-@app.get("/api/<command>")
-def handle_plateloader_commands(command):
+@app.get("/api/led/<command>")
+def handle_arduino_LED_commands(command):
     with serial_lock:
-        response = arduino.send_command(command)
+        response = arduino.send_LED_command(command)
+    return response
+
+@app.get("/api/flash/<number>/<delay>")
+def handle_arduino_FLASH_commands(number, delay):
+    with serial_lock:
+        response = arduino.send_FLASH_command(number, delay)
     return response
 
 if __name__ == "__main__":
