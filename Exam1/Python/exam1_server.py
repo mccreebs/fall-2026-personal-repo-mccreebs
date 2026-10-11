@@ -2,7 +2,7 @@ import flask
 import arduino
 import threading
 
-app = flask.Flask(__name__, static_url_path="", static_folder="Public")
+app = flask.Flask(__name__, static_url_path="", static_folder="templates")
 
 serial_lock = threading.Lock()
 arduino = arduino.Arduino("/dev/ttyACM0") # TODO: set port if needed
@@ -17,10 +17,10 @@ def handle_arduino_LED_commands(command):
         response = arduino.send_LED_command(command)
     return response
 
-@app.get("/api/flash/<number>/<delay>")
-def handle_arduino_FLASH_commands(number, delay):
+@app.get("/api/flash/<number>/<period>")
+def handle_arduino_FLASH_commands(number, period):
     with serial_lock:
-        response = arduino.send_FLASH_command(number, delay)
+        response = arduino.send_FLASH_command(number, period)
     return response
 
 if __name__ == "__main__":
