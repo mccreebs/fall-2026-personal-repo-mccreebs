@@ -9,11 +9,10 @@ classdef ArduinoFrontend < hgsetget
             import matlab.net.http.*
 
             r = RequestMessage;
-            uri = URI("http://sinclaer-pi5.rose-hulman.edu:8081/api/led" + command);
+            uri = URI("http://sinclaer-pi5.rose-hulman.edu:8081/api/led/" + command);
             resp = send(r,uri);
             response = resp.Body.Data;
 
-            fprintf("Response to %s --> %s", command, response);
         end
 
         function response = sendFLASHCommand(obj, num, period)
@@ -21,11 +20,10 @@ classdef ArduinoFrontend < hgsetget
             import matlab.net.http.*
 
             r = RequestMessage;
-            uri = URI("http://sinclaer-pi5.rose-hulman.edu:8081/api/flash" + num, "/" + period);
+            uri = URI("http://sinclaer-pi5.rose-hulman.edu:8081/api/flash/" + num + "/" + period);
             resp = send(r,uri);
             response = resp.Body.Data;
 
-            fprintf("Response to %s --> %s", command, response);
         end
 
     end
