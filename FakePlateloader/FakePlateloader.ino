@@ -63,7 +63,6 @@ void handleXAxis(String params) {
   Serial.println("READY");
 }
 
-// Handle move
 void handleMove(String params) {
   params.trim();
   int commaIndex = params.indexOf(',');
