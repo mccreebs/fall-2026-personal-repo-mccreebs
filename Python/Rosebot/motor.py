@@ -65,17 +65,17 @@ class OrdinaryCar:
             self.pwm.set_motor_pwm(5,4095)
     def set_motor_model(self, duty1, duty2, duty3, duty4):
         duty1,duty2,duty3,duty4=self.duty_range(duty1,duty2,duty3,duty4)
-        self.left_upper_wheel(duty1)
-        self.left_lower_wheel(duty2)
-        self.right_upper_wheel(duty3)
-        self.right_lower_wheel(duty4)
+        self.left_upper_wheel(-duty1)
+        self.left_lower_wheel(-duty2)
+        self.right_upper_wheel(-duty3)
+        self.right_lower_wheel(-duty4)
 
     def close(self):
         self.set_motor_model(0,0,0,0)
         self.pwm.close()
 
 if __name__=='__main__':
-    PWM = Ordinary_Car()          
+    PWM = OrdinaryCar()          
     try:
         PWM.set_motor_model(2000,2000,2000,2000)       #Forward
         time.sleep(1)
