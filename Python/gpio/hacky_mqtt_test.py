@@ -5,6 +5,8 @@ def mqtt_callback(message_type, message_payload):
     print("The message type is ", message_type)
     print("The message payload is ", message_payload)
 
+
+
 def main():
     print("Hacky MQTT Test")
     mqtt_client = mh.MqttClient()
