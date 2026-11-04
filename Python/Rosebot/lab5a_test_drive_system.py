@@ -40,9 +40,9 @@ def run_test_drive_system():
     # run_test_go_stop(robot)
     # run_test_go_straight_for_seconds(robot)
     # run_test_go_straight_for_inches(robot)
-    run_test_spin_in_place_for_seconds(robot)
+    # run_test_spin_in_place_for_seconds(robot)
     # run_test_spin_in_place_for_degrees(robot)
-    # run_test_draw_polygon(robot)
+    run_test_draw_polygon(robot)
 
 
 def run_test_go_stop(robot: Rosebot):
@@ -200,6 +200,6 @@ def run_test_draw_polygon(robot: Rosebot):
         #  sending the inputs degrees and speed or inches and speed as appropriate.
         # -------------------------------------------------------------------------
 
-
+        robot.drive_system.draw_polygon(speed, sides, inches)
 
 main()
