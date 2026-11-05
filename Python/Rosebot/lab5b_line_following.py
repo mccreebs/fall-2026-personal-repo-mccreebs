@@ -22,9 +22,9 @@ def main():
                     robot.drive_system.set_speeds(20, 20, 0, 0)
                 elif current_pos == "WWW":
                     if last_pos == "BWW":
-                        robot.drive_system.set_speeds(0, 0, 30, 30)
+                        robot.drive_system.set_speeds(0, 0, 20, 20)
                     elif last_pos == "WWB":
-                        robot.drive_system.set_speeds(30, 30, 0, 0)
+                        robot.drive_system.set_speeds(20, 20, 0, 0)
 
                 last_pos = current_pos
                 # if robot.line_sensors.get_line_word() == "WBW":
@@ -36,7 +36,7 @@ def main():
                 # else:
                 #     robot.drive_system.set_speeds(0, 0, 0, 0)
             
-            time.sleep(0.05)
+            time.sleep(0.1)
 
     except KeyboardInterrupt:
         # Handle ctrl c to exit program cleanly.
