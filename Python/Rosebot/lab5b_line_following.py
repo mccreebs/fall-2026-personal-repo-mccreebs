@@ -36,7 +36,7 @@ def main():
                 # else:
                 #     robot.drive_system.set_speeds(0, 0, 0, 0)
             
-            time.sleep(0.1)
+            time.sleep(0.05)
 
     except KeyboardInterrupt:
         # Handle ctrl c to exit program cleanly.

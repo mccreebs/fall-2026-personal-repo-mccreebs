@@ -42,7 +42,7 @@ class DriveSystem:
         self.stop()
 
     def spin_in_place_for_degrees(self, degrees, speed):
-            m = 7.5
+            m = 8.4
             b = 0
             deg_per_sec = speed * m + b
             seconds = degrees/deg_per_sec
