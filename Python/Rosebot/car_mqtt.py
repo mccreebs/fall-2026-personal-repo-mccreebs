@@ -67,8 +67,6 @@ def main():
                     "right": app.robot.line_sensors.get_right(),
                 })
 
-            if app.mode == "none":
-                app.robot.drive_system.stop()
 
             if app.mode == "drive_until_wall":
                 # Check for wall
