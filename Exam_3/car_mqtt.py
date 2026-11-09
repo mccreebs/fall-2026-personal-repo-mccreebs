@@ -23,14 +23,16 @@ class App:
                 self.robot.drive_system.set_speeds(message_payload[2], message_payload[2], 0, 0)
             elif message_payload[0] == 0:
                 self.robot.drive_system.set_speeds(-message_payload[2], -message_payload[2], 0, 0) 
-            time.sleep(message_payload[1])     
+            time.sleep(message_payload[1])
+            self.robot.drive_system.stop()     
 
         if message_type == "right":
             if message_payload[0] == 1:
                 self.robot.drive_system.set_speeds(0, 0, message_payload[2], message_payload[2])
             elif message_payload[0] == 0:
                 self.robot.drive_system.set_speeds(0, 0, -message_payload[2], -message_payload[2]) 
-            time.sleep(message_payload[1])  
+            time.sleep(message_payload[1])
+            self.robot.drive_system.stop()  
 
         if message_type == "both":
             if message_payload[0] == 1:
@@ -38,19 +40,18 @@ class App:
             elif message_payload[0] == 0:
                 self.robot.drive_system.set_speeds(-message_payload[2], -message_payload[2], -message_payload[3], -message_payload[3]) 
             time.sleep(message_payload[1]) 
+            self.robot.drive_system.stop()
 
 def main():
     print("Car MQTT")
     app = App()
 
     try:
-        # while True:
-            # app.mqtt_client.send_message("beep", [40, 40, 40, 40])
-            # time.sleep(2)
-        #     app.mqtt_client.send_message("stop", [0, 0, 0, 0])
-        #     time.sleep(1)
+        while True:
+            app.mqtt_client.send_message("ultra", app.robot.ultrasonic.get_cm())
+            time.sleep(2)
 
-        signal.pause() # Keep the program alive but does nothing.
+        # signal.pause() # Keep the program alive but does nothing.
     except KeyboardInterrupt:
         print("Goodbye")
         app.robot.drive_system.stop()
