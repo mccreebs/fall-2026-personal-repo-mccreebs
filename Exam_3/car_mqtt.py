@@ -2,6 +2,8 @@ import mqtt_helper as mh
 import signal
 import time
 from rosebot import Rosebot
+import datetime
+
 class App:
 
     def __init__(self):
@@ -45,11 +47,17 @@ class App:
 def main():
     print("Car MQTT")
     app = App()
+    last_time_sent_s = 0
 
     try:
         while True:
-            app.mqtt_client.send_message("ultra", app.robot.ultrasonic.get_cm())
-            time.sleep(2)
+            right_now = datetime.datetime.now()
+            current_time_s = right_now.timestamp()
+
+            if current_time_s > last_time_sent_s + 2.0:
+                last_time_sent_s = current_time_s
+                app.mqtt_client.send_message("ultra", app.robot.ultrasonic.get_cm())
+            
 
         # signal.pause() # Keep the program alive but does nothing.
     except KeyboardInterrupt:
